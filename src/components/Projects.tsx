@@ -2,79 +2,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { HiExternalLink, HiCode } from 'react-icons/hi'
-
-interface Project {
-  id: number
-  title: string
-  description: string
-  technologies: string[]
-  image: string
-  liveUrl?: string
-  githubUrl?: string
-}
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: 'E-Commerce Platform',
-    description:
-      'A full-stack e-commerce solution with modern UI, secure payment processing, and admin dashboard.',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop',
-    liveUrl: '#',
-    githubUrl: '#',
-  },
-  {
-    id: 2,
-    title: 'Task Management App',
-    description:
-      'A collaborative task management application with real-time updates and team collaboration features.',
-    technologies: ['React', 'TypeScript', 'Firebase', 'Tailwind CSS'],
-    image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop',
-    liveUrl: '#',
-    githubUrl: '#',
-  },
-  {
-    id: 3,
-    title: 'Portfolio Website',
-    description:
-      'A responsive portfolio website showcasing projects and skills with smooth animations and modern design.',
-    technologies: ['React', 'Framer Motion', 'TypeScript', 'Tailwind CSS'],
-    image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop',
-    liveUrl: '#',
-    githubUrl: '#',
-  },
-  {
-    id: 4,
-    title: 'Analytics Dashboard',
-    description:
-      'A comprehensive analytics dashboard with data visualization, charts, and real-time metrics.',
-    technologies: ['React', 'D3.js', 'Python', 'FastAPI'],
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
-    liveUrl: '#',
-    githubUrl: '#',
-  },
-  {
-    id: 5,
-    title: 'Social Media App',
-    description:
-      'A social media platform with user profiles, posts, comments, and real-time messaging.',
-    technologies: ['React', 'Node.js', 'Socket.io', 'PostgreSQL'],
-    image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&h=600&fit=crop',
-    liveUrl: '#',
-    githubUrl: '#',
-  },
-  {
-    id: 6,
-    title: 'Weather App',
-    description:
-      'A beautiful weather application with location-based forecasts and interactive maps.',
-    technologies: ['React', 'TypeScript', 'OpenWeather API', 'Chart.js'],
-    image: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=800&h=600&fit=crop',
-    liveUrl: '#',
-    githubUrl: '#',
-  },
-]
+import { projects } from '../data/projects'
 
 const Projects = () => {
   const ref = useRef(null)
@@ -139,15 +67,21 @@ const Projects = () => {
                 transition={{ duration: 0.3 }}
               >
                 {/* Project Image */}
-                <div className="relative h-48 overflow-hidden bg-gray-200">
-                  <motion.img
-                    src={project.image}
-                    alt={`${project.title} project screenshot`}
-                    className="w-full h-full object-cover"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                    loading="lazy"
-                  />
+                <div className="relative h-48 overflow-hidden bg-gray-200 flex items-center justify-center">
+                  {project.image ? (
+                    <motion.img
+                      src={project.image}
+                      alt={`${project.title} project screenshot`}
+                      className="w-full h-full object-cover"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.5 }}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
+                      <HiCode className="h-16 w-16 text-gray-400" />
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-primary-black/0 group-hover:bg-primary-black/80 transition-all duration-300 flex items-center justify-center gap-4">
                     {project.liveUrl && (
                       <motion.a
@@ -157,6 +91,7 @@ const Projects = () => {
                         className="opacity-0 group-hover:opacity-100 text-primary-white p-3 bg-primary-white/20 backdrop-blur-sm rounded-full"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
+                        aria-label={`View ${project.title} live demo`}
                       >
                         <HiExternalLink className="h-6 w-6" />
                       </motion.a>
@@ -169,6 +104,7 @@ const Projects = () => {
                         className="opacity-0 group-hover:opacity-100 text-primary-white p-3 bg-primary-white/20 backdrop-blur-sm rounded-full"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
+                        aria-label={`View ${project.title} on GitHub`}
                       >
                         <HiCode className="h-6 w-6" />
                       </motion.a>

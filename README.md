@@ -43,6 +43,40 @@ npm run build
 
 The built files will be in the `dist` directory.
 
+### Deploying to Vercel
+
+The project is configured for easy deployment to Vercel:
+
+**Option 1: Deploy via Vercel CLI**
+
+1. Install Vercel CLI (if not already installed):
+```bash
+npm install -g vercel
+```
+
+2. Login to Vercel:
+```bash
+vercel login
+```
+
+3. Deploy to production:
+```bash
+vercel --prod
+```
+
+**Option 2: Deploy via Vercel Dashboard**
+
+1. Push your code to GitHub (already done)
+2. Go to [vercel.com](https://vercel.com) and sign in
+3. Click "Add New Project"
+4. Import your GitHub repository: `BeCreativeRuben/Portofolio`
+5. Vercel will auto-detect Vite and configure the build settings
+6. Click "Deploy"
+
+The site will be live at `https://your-project-name.vercel.app`
+
+**Note:** The `vercel.json` configuration file is already included in the project for optimal deployment settings.
+
 ## Configuration
 
 ### EmailJS Setup (Contact Form)
@@ -60,10 +94,32 @@ Alternatively, you can replace the EmailJS integration with your own backend API
 
 ### Customization
 
-- **Projects**: Edit the `projects` array in `src/components/Projects.tsx`
+- **Projects**: Edit the `projects` array in `src/data/projects.ts` - simply add a new object to showcase more projects
 - **Skills**: Update the `skills` array in `src/components/Bio.tsx`
 - **Colors**: Modify the Tailwind theme in `tailwind.config.js`
 - **Content**: Update text content in each component file
+
+#### Adding New Projects
+
+To add a new project to showcase:
+
+1. Open `src/data/projects.ts`
+2. Add a new object to the `projects` array:
+
+```typescript
+{
+  id: 4, // Next available ID
+  title: 'Your Project Name',
+  description: 'A description of your project and its features.',
+  technologies: ['React', 'TypeScript', 'Node.js'],
+  githubUrl: 'https://github.com/username/repo',
+  liveUrl: 'https://yourproject.com', // Optional
+  image: 'https://example.com/screenshot.png', // Optional
+  featured: true, // Optional, defaults to true
+}
+```
+
+The project will automatically appear in the Projects section!
 
 ## Project Structure
 
@@ -77,7 +133,10 @@ Alternatively, you can replace the EmailJS integration with your own backend API
 │   │   ├── Projects.tsx
 │   │   ├── Contact.tsx
 │   │   ├── Navigation.tsx
-│   │   └── Footer.tsx
+│   │   ├── Footer.tsx
+│   │   └── ErrorBoundary.tsx
+│   ├── data/
+│   │   └── projects.ts   # Project data (easy to add new projects)
 │   ├── styles/
 │   │   └── globals.css   # Global styles
 │   ├── App.tsx           # Main app component
