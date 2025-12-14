@@ -81,16 +81,67 @@ The site will be live at `https://your-project-name.vercel.app`
 
 ### EmailJS Setup (Contact Form)
 
-To enable the contact form, you'll need to:
+To enable the contact form and receive emails when someone submits the form:
 
+#### Step 1: Create EmailJS Account
 1. Sign up for a free account at [EmailJS](https://www.emailjs.com/)
-2. Create a service and template
-3. Update the contact form in `src/components/Contact.tsx` with your credentials:
-   - `YOUR_SERVICE_ID`
-   - `YOUR_TEMPLATE_ID`
-   - `YOUR_PUBLIC_KEY`
+2. Verify your email address
 
-Alternatively, you can replace the EmailJS integration with your own backend API.
+#### Step 2: Create an Email Service
+1. Go to **Email Services** in your EmailJS dashboard
+2. Click **Add New Service**
+3. Choose your email provider (Gmail, Outlook, etc.)
+4. Follow the setup instructions to connect your email account
+5. **Copy the Service ID** (you'll need this later)
+
+#### Step 3: Create an Email Template
+1. Go to **Email Templates** in your EmailJS dashboard
+2. Click **Create New Template**
+3. Use this template structure:
+   ```
+   Subject: New Contact Form Submission from {{from_name}}
+   
+   You have received a new message from your portfolio contact form.
+   
+   From: {{from_name}}
+   Email: {{from_email}}
+   
+   Message:
+   {{message}}
+   ```
+4. **Copy the Template ID** (you'll need this later)
+
+#### Step 4: Get Your Public Key
+1. Go to **Account** > **General** in your EmailJS dashboard
+2. Find your **Public Key** under API Keys
+3. **Copy the Public Key** (you'll need this later)
+
+#### Step 5: Configure Environment Variables
+1. Create a `.env` file in the root directory of your project
+2. Add the following variables with your actual values:
+   ```
+   VITE_EMAILJS_SERVICE_ID=your_service_id_here
+   VITE_EMAILJS_TEMPLATE_ID=your_template_id_here
+   VITE_EMAILJS_PUBLIC_KEY=your_public_key_here
+   ```
+3. Replace the placeholder values with your actual EmailJS credentials
+
+#### Step 6: Restart Development Server
+After creating/updating your `.env` file, restart your development server:
+```bash
+npm run dev
+```
+
+#### For Production (Vercel)
+1. Go to your Vercel project dashboard
+2. Navigate to **Settings** > **Environment Variables**
+3. Add the same three environment variables:
+   - `VITE_EMAILJS_SERVICE_ID`
+   - `VITE_EMAILJS_TEMPLATE_ID`
+   - `VITE_EMAILJS_PUBLIC_KEY`
+4. Redeploy your site
+
+**Note:** The `.env` file is already in `.gitignore` to keep your credentials secure. Never commit your actual credentials to GitHub!
 
 ### Customization
 

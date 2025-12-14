@@ -54,8 +54,8 @@ const Navigation = ({ activeSection }: NavigationProps) => {
             <img
               src="/sources/fulllogo copy2.jpg"
               alt="Studio Thielman"
-              className="h-10 w-auto max-w-[50px]"
-              style={{ width: '50px', height: '40px', objectFit: 'contain' }}
+              className="h-14 md:h-16 w-auto max-w-[120px] md:max-w-[140px]"
+              style={{ objectFit: 'contain' }}
             />
           </motion.button>
 

@@ -62,8 +62,20 @@ const Bio = () => {
           </motion.h2>
 
           <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-start">
-            {/* Bio Text */}
+            {/* Bio Text with Image */}
             <motion.div variants={itemVariants} className="space-y-6">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="mb-8"
+              >
+                <img
+                  src="/sources/DSC_9422.JPG"
+                  alt="Portrait"
+                  className="w-full max-w-md mx-auto rounded-lg shadow-lg object-cover aspect-[3/4]"
+                />
+              </motion.div>
               <p className="text-lg md:text-xl leading-relaxed text-gray-700">
                 Welcome to my portfolio. I'm a passionate software and web developer
                 dedicated to creating exceptional digital experiences.
@@ -117,15 +129,15 @@ const Bio = () => {
           >
             <div className="grid md:grid-cols-3 gap-8 text-center">
               <div>
-                <h4 className="text-3xl font-bold mb-2">100+</h4>
+                <h4 className="text-3xl font-bold mb-2">30+</h4>
                 <p className="text-gray-600 uppercase tracking-wider text-sm">Projects</p>
               </div>
               <div>
-                <h4 className="text-3xl font-bold mb-2">5+</h4>
+                <h4 className="text-3xl font-bold mb-2">3+</h4>
                 <p className="text-gray-600 uppercase tracking-wider text-sm">Years Experience</p>
               </div>
               <div>
-                <h4 className="text-3xl font-bold mb-2">50+</h4>
+                <h4 className="text-3xl font-bold mb-2">15+</h4>
                 <p className="text-gray-600 uppercase tracking-wider text-sm">Happy Clients</p>
               </div>
             </div>

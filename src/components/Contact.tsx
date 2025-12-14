@@ -29,17 +29,23 @@ const Contact = () => {
     setSubmitStatus('idle')
 
     try {
-      // Note: You'll need to set up EmailJS service and get your keys
-      // For now, this is a placeholder - replace with your EmailJS credentials
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('EmailJS credentials are not configured. Please check your .env file.')
+      }
+
       await emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        serviceId,
+        templateId,
         {
           from_name: data.name,
           from_email: data.email,
           message: data.message,
         },
-        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+        publicKey
       )
 
       setSubmitStatus('success')
