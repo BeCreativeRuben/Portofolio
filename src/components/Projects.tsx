@@ -57,7 +57,7 @@ const Projects = () => {
           </motion.p>
 
           {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {projects.map((project) => (
               <motion.article
                 key={project.id}
@@ -130,6 +130,27 @@ const Projects = () => {
               </motion.article>
             ))}
           </div>
+
+          {/* Statistics */}
+          <motion.div
+            variants={cardVariants}
+            className="mt-16 pt-16 border-t border-gray-200"
+          >
+            <div className="grid md:grid-cols-3 gap-8 text-center">
+              <div>
+                <h4 className="text-3xl font-bold mb-2">30+</h4>
+                <p className="text-gray-600 uppercase tracking-wider text-sm">Projects</p>
+              </div>
+              <div>
+                <h4 className="text-3xl font-bold mb-2">3+</h4>
+                <p className="text-gray-600 uppercase tracking-wider text-sm">Years Experience</p>
+              </div>
+              <div>
+                <h4 className="text-3xl font-bold mb-2">15+</h4>
+                <p className="text-gray-600 uppercase tracking-wider text-sm">Happy Clients</p>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
