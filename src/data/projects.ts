@@ -34,8 +34,8 @@ export const projects: Project[] = [
     description:
       'A demo dashboard system for Battlekart task overview. Features real-time data sync from Google Sheets via Google Apps Script API, offline support with localStorage caching, and automated tracking of operational metrics. Zero-cost serverless architecture.',
     technologies: ['JavaScript', 'Google Apps Script', 'Google Sheets API', 'HTML', 'CSS'],
-    githubUrl: 'https://github.com/BeCreativeRuben/BK_Overview_Demo',
-    liveUrl: 'https://becreativeruben.github.io/BK_Overview_Demo/',
+    githubUrl: 'https://github.com/BeCreativeRuben/BattleDashboard_DEMO',
+    liveUrl: 'https://becreativeruben.github.io/BattleDashboard_DEMO/',
     image: '/sources/BK Overview Picture.png',
     featured: true,
   },

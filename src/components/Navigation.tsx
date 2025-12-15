@@ -20,8 +20,8 @@ const Navigation = ({ activeSection }: NavigationProps) => {
 
   const navItems = [
     { name: 'Home', id: 'hero' },
-    { name: 'About', id: 'bio' },
     { name: 'Projects', id: 'projects' },
+    { name: 'About', id: 'bio' },
     { name: 'Contact', id: 'contact' },
   ]
 
@@ -52,7 +52,7 @@ const Navigation = ({ activeSection }: NavigationProps) => {
             whileTap={{ scale: 0.95 }}
           >
             <img
-              src="/sources/fulllogo copy2.jpg"
+              src="/sources/fulllogo_transparent.png"
               alt="Studio Thielman"
               className="h-14 md:h-16 w-auto max-w-[120px] md:max-w-[140px]"
               style={{ objectFit: 'contain' }}
