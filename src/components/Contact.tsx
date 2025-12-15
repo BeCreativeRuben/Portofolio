@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import emailjs from '@emailjs/browser'
 import { HiCheckCircle, HiXCircle } from 'react-icons/hi'
@@ -16,6 +16,7 @@ const Contact = () => {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string>('')
 
   const {
     register,
@@ -24,20 +25,39 @@ const Contact = () => {
     reset,
   } = useForm<FormData>()
 
+  // Initialize EmailJS when component mounts
+  useEffect(() => {
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    if (publicKey) {
+      emailjs.init(publicKey)
+    }
+  }, [])
+
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true)
     setSubmitStatus('idle')
+    setErrorMessage('')
 
     try {
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
+      // Check if environment variables are available
       if (!serviceId || !templateId || !publicKey) {
-        throw new Error('EmailJS credentials are not configured. Please check your .env file.')
+        const missingVars = []
+        if (!serviceId) missingVars.push('VITE_EMAILJS_SERVICE_ID')
+        if (!templateId) missingVars.push('VITE_EMAILJS_TEMPLATE_ID')
+        if (!publicKey) missingVars.push('VITE_EMAILJS_PUBLIC_KEY')
+        
+        const errorMsg = `EmailJS credentials are missing: ${missingVars.join(', ')}. Please configure environment variables in Vercel.`
+        console.error(errorMsg)
+        setErrorMessage(errorMsg)
+        throw new Error(errorMsg)
       }
 
-      await emailjs.send(
+      // Send email (publicKey can be passed directly or initialized beforehand)
+      const response = await emailjs.send(
         serviceId,
         templateId,
         {
@@ -48,13 +68,30 @@ const Contact = () => {
         publicKey
       )
 
+      console.log('EmailJS success:', response)
       setSubmitStatus('success')
       reset()
       setTimeout(() => setSubmitStatus('idle'), 5000)
-    } catch (error) {
-      console.error('EmailJS error:', error)
+    } catch (error: any) {
+      console.error('EmailJS error details:', error)
+      
+      // Provide more specific error messages
+      let errorMsg = 'Something went wrong. Please try again or contact me directly.'
+      
+      if (error?.text) {
+        errorMsg = `EmailJS error: ${error.text}`
+      } else if (error?.message) {
+        errorMsg = error.message
+      } else if (error?.status) {
+        errorMsg = `Request failed with status ${error.status}. Please check your EmailJS configuration.`
+      }
+      
+      setErrorMessage(errorMsg)
       setSubmitStatus('error')
-      setTimeout(() => setSubmitStatus('idle'), 5000)
+      setTimeout(() => {
+        setSubmitStatus('idle')
+        setErrorMessage('')
+      }, 8000)
     } finally {
       setIsSubmitting(false)
     }
@@ -231,10 +268,15 @@ const Contact = () => {
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="flex items-center gap-2 text-red-600"
+                className="flex flex-col gap-2 text-red-600"
               >
-                <HiXCircle className="h-5 w-5" />
-                <p>Something went wrong. Please try again or contact me directly.</p>
+                <div className="flex items-center gap-2">
+                  <HiXCircle className="h-5 w-5 flex-shrink-0" />
+                  <p className="font-medium">Something went wrong. Please try again or contact me directly.</p>
+                </div>
+                {errorMessage && (
+                  <p className="text-sm text-red-500 ml-7">{errorMessage}</p>
+                )}
               </motion.div>
             )}
           </motion.form>
