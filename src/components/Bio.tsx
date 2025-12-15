@@ -100,26 +100,33 @@ const Bio = () => {
 
           {/* Skills Section */}
           <motion.div variants={itemVariants} className="space-y-6" aria-labelledby="skills-heading">
-            <h3 id="skills-heading" className="text-2xl md:text-3xl font-bold mb-6">Skills & Technologies</h3>
-            <div className="flex flex-wrap gap-2 md:gap-3">
+            <h3 id="skills-heading" className="text-2xl md:text-3xl font-bold mb-8">Skills & Technologies</h3>
+            <div className="flex flex-wrap gap-3 md:gap-4">
               {skills.map((skill, index) => (
                 <motion.div
                   key={skill}
-                  initial={{ opacity: 0, scale: 0.8 }}
+                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
                   animate={
                     isInView
                       ? {
                           opacity: 1,
                           scale: 1,
+                          y: 0,
                           transition: {
-                            delay: index * 0.05,
-                            duration: 0.3,
+                            delay: index * 0.04,
+                            duration: 0.4,
+                            ease: [0.6, -0.05, 0.01, 0.99],
                           },
                         }
-                      : { opacity: 0, scale: 0.8 }
+                      : { opacity: 0, scale: 0.8, y: 20 }
                   }
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  className="px-3 py-1.5 md:px-4 md:py-2 bg-gray-100 border border-primary-black/10 text-xs md:text-sm font-medium uppercase tracking-wider cursor-default rounded-md hover:bg-gray-200 transition-colors"
+                  whileHover={{ 
+                    scale: 1.08, 
+                    y: -4,
+                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.1)',
+                    transition: { duration: 0.2 }
+                  }}
+                  className="px-4 py-2.5 md:px-5 md:py-3 bg-white border-2 border-primary-black text-xs md:text-sm font-semibold uppercase tracking-wider cursor-default rounded-lg hover:bg-primary-black hover:text-white transition-all duration-300 shadow-sm"
                 >
                   {skill}
                 </motion.div>
