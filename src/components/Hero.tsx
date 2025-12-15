@@ -102,15 +102,6 @@ const Hero = () => {
           />
         </motion.div>
 
-        {/* Main Heading */}
-        <motion.h1
-          variants={itemVariants}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 tracking-tight"
-        >
-          <span className="block">Software &</span>
-          <span className="block">Web Development</span>
-        </motion.h1>
-
         {/* Subheading */}
         <motion.p
           variants={itemVariants}
@@ -156,7 +147,7 @@ const Hero = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center"
       >
         <motion.button
           onClick={scrollToNext}
