@@ -69,11 +69,13 @@ const Bio = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex items-center justify-center"
             >
               <img
                 src="/sources/DSC_9422.JPG"
                 alt="Portrait"
-                className="w-full max-w-xs mx-auto rounded-lg shadow-lg object-cover aspect-[3/4]"
+                className="w-full max-w-xs mx-auto rounded-lg shadow-lg object-cover object-center aspect-[3/4]"
+                style={{ objectPosition: 'center center' }}
               />
             </motion.div>
 
@@ -99,7 +101,7 @@ const Bio = () => {
           {/* Skills Section */}
           <motion.div variants={itemVariants} className="space-y-6" aria-labelledby="skills-heading">
             <h3 id="skills-heading" className="text-2xl md:text-3xl font-bold mb-6">Skills & Technologies</h3>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2 md:gap-3">
               {skills.map((skill, index) => (
                 <motion.div
                   key={skill}
@@ -116,8 +118,8 @@ const Bio = () => {
                         }
                       : { opacity: 0, scale: 0.8 }
                   }
-                  whileHover={{ scale: 1.1, y: -5 }}
-                  className="px-4 py-2 bg-gray-100 border border-primary-black/10 text-sm font-medium uppercase tracking-wider cursor-default"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  className="px-3 py-1.5 md:px-4 md:py-2 bg-gray-100 border border-primary-black/10 text-xs md:text-sm font-medium uppercase tracking-wider cursor-default rounded-md hover:bg-gray-200 transition-colors"
                 >
                   {skill}
                 </motion.div>
