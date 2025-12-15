@@ -62,7 +62,7 @@ const Projects = () => {
               <motion.article
                 key={project.id}
                 variants={cardVariants}
-                className="bg-primary-white border border-gray-200 overflow-hidden group cursor-pointer"
+                className="bg-white border border-gray-200 overflow-hidden group cursor-pointer shadow-sm"
                 whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
                 transition={{ duration: 0.3 }}
               >

@@ -15,7 +15,7 @@
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    background-color: #FFFFFF;
+    background-color: #FAFAFA;
     color: #000000;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -39,7 +39,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f5f5f5;
+  background: #FAFAFA;
 }
 
 ::-webkit-scrollbar-thumb {
