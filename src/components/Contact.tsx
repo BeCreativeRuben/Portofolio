@@ -3,7 +3,7 @@ import { useInView } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import emailjs from '@emailjs/browser'
-import { HiCheckCircle, HiXCircle } from 'react-icons/hi'
+import { HiCheckCircle, HiXCircle, HiPhone, HiMail } from 'react-icons/hi'
 
 interface FormData {
   name: string
@@ -140,10 +140,35 @@ const Contact = () => {
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="text-lg md:text-xl text-gray-600 text-center mb-10 md:mb-12 lg:mb-16 max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-gray-600 text-center mb-6 max-w-2xl mx-auto"
           >
             Have a project in mind? Let's work together to bring your ideas to life.
           </motion.p>
+
+          {/* Contact Information */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-10 md:mb-12 lg:mb-16"
+          >
+            <motion.a
+              href="tel:+32493505641"
+              className="flex items-center gap-2 text-gray-700 hover:text-primary-black transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <HiPhone className="h-5 w-5" />
+              <span className="text-sm md:text-base">+32 493 50 56 41</span>
+            </motion.a>
+            <motion.a
+              href="mailto:ruben.thielman@gmail.com"
+              className="flex items-center gap-2 text-gray-700 hover:text-primary-black transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <HiMail className="h-5 w-5" />
+              <span className="text-sm md:text-base">ruben.thielman@gmail.com</span>
+            </motion.a>
+          </motion.div>
 
           {/* Contact Form */}
           <motion.form

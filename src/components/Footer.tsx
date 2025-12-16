@@ -6,10 +6,10 @@ const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   const socialLinks = [
-    { icon: FaGithub, href: '#', label: 'GitHub' },
-    { icon: FaLinkedin, href: '#', label: 'LinkedIn' },
+    { icon: FaGithub, href: 'https://github.com/BeCreativeRuben', label: 'GitHub' },
+    { icon: FaLinkedin, href: 'https://www.linkedin.com/in/ruben-thielman-6a8963256/', label: 'LinkedIn' },
     { icon: FaTwitter, href: '#', label: 'Twitter' },
-    { icon: HiMail, href: '#', label: 'Email' },
+    { icon: HiMail, href: 'mailto:ruben.thielman@gmail.com', label: 'Email' },
   ]
 
   return (
