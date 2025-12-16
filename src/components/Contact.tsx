@@ -123,9 +123,9 @@ const Contact = () => {
     <section
       id="contact"
       ref={ref}
-      className="min-h-screen py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-primary-white"
+      className="min-h-screen py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 xl:px-12 bg-primary-white"
     >
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -140,7 +140,7 @@ const Contact = () => {
           </motion.h2>
           <motion.p
             variants={itemVariants}
-            className="text-lg md:text-xl text-gray-600 text-center mb-16 max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-gray-600 text-center mb-10 md:mb-12 lg:mb-16 max-w-2xl mx-auto"
           >
             Have a project in mind? Let's work together to bring your ideas to life.
           </motion.p>

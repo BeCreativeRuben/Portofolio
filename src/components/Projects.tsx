@@ -34,7 +34,7 @@ const Projects = () => {
     <section
       id="projects"
       ref={ref}
-      className="min-h-screen py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-gray-light"
+      className="min-h-screen py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 xl:px-12 bg-gray-light"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
@@ -51,13 +51,13 @@ const Projects = () => {
           </motion.h2>
           <motion.p
             variants={cardVariants}
-            className="text-lg md:text-xl text-gray-600 text-center mb-16 max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-gray-600 text-center mb-10 md:mb-12 lg:mb-16 max-w-2xl mx-auto"
           >
             A selection of projects that showcase my skills and expertise
           </motion.p>
 
           {/* Projects Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-10 md:mb-12 lg:mb-16">
             {projects.map((project) => (
               <motion.article
                 key={project.id}
@@ -134,7 +134,7 @@ const Projects = () => {
           {/* Statistics */}
           <motion.div
             variants={cardVariants}
-            className="mt-16 pt-16 border-t border-gray-200"
+            className="mt-10 md:mt-12 lg:mt-16 pt-10 md:pt-12 lg:pt-16 border-t border-gray-200"
           >
             <div className="grid md:grid-cols-3 gap-8 text-center">
               <div>

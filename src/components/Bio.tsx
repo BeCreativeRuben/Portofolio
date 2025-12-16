@@ -54,9 +54,9 @@ const Bio = () => {
     <section
       id="bio"
       ref={ref}
-      className="min-h-screen py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-primary-white"
+      className="min-h-screen py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 xl:px-12 bg-primary-white"
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -65,14 +65,14 @@ const Bio = () => {
           {/* Section Title */}
           <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-12 text-center"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 md:mb-10 lg:mb-12 text-center"
             id="about-heading"
           >
             About Me
           </motion.h2>
 
           {/* Image and Bio Text Side by Side */}
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start mb-16">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-start mb-10 md:mb-12 lg:mb-16">
             {/* Image */}
             <motion.div
               variants={itemVariants}
