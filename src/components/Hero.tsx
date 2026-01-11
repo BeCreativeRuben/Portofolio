@@ -198,10 +198,11 @@ const Hero = () => {
           Crafting digital experiences with precision and innovation
         </motion.p>
 
-        {/* CTA Buttons */}
+        {/* CTA Buttons - Hidden during rebranding */}
         <motion.div
           variants={itemVariants}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          style={{ display: 'none' }}
         >
           <motion.button
             onClick={() => {

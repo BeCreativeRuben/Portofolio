@@ -19,10 +19,10 @@ const Navigation = ({ activeSection }: NavigationProps) => {
   }, [])
 
   const navItems = [
-    { name: 'Home', id: 'hero' },
-    { name: 'Projects', id: 'projects' },
-    { name: 'About', id: 'bio' },
-    { name: 'Contact', id: 'contact' },
+    { name: 'Rebranding', id: 'hero' },
+    { name: 'Rebranding', id: 'projects' },
+    { name: 'Rebranding', id: 'bio' },
+    { name: 'Rebranding', id: 'contact' },
   ]
 
   const scrollToSection = (id: string) => {

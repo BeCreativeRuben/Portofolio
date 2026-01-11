@@ -35,11 +35,17 @@ function App() {
       <Navigation activeSection={activeSection} />
       <main role="main">
         <Hero />
-        <Projects />
-        <Bio />
-        <Contact />
+        {/* Hidden during rebranding */}
+        <div style={{ display: 'none' }}>
+          <Projects />
+          <Bio />
+          <Contact />
+        </div>
       </main>
-      <Footer />
+      {/* Hidden during rebranding */}
+      <div style={{ display: 'none' }}>
+        <Footer />
+      </div>
     </div>
   )
 }
