@@ -82,7 +82,7 @@ const Bio = () => {
               className="flex items-center justify-center"
             >
               <img
-                src="/sources/DSC_9422.JPG"
+                src="/sources/WhatsApp Image 2026-01-11 at 13.25.54.jpeg"
                 alt="Portrait"
                 className="w-full max-w-xs mx-auto rounded-lg shadow-lg object-cover object-center aspect-[3/4]"
                 style={{ objectPosition: 'center center' }}
