@@ -121,6 +121,27 @@ const Hero = () => {
         animate="visible"
         className="relative z-10 text-center px-4 sm:px-6 lg:px-8 xl:px-12 max-w-6xl mx-auto"
       >
+        {/* Logo */}
+        <motion.div variants={itemVariants} className="mb-8">
+          <motion.img
+            src="/sources/fulllogo_transparent_nobuffer.png"
+            alt="Studio Thielman - Software & Web Development"
+            className="h-24 md:h-32 lg:h-40 mx-auto"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1, ease: [0.6, -0.05, 0.01, 0.99] }}
+            loading="eager"
+          />
+        </motion.div>
+
+        {/* Subheading */}
+        <motion.p
+          variants={itemVariants}
+          className="text-lg md:text-xl lg:text-2xl text-gray-600 mb-8 md:mb-12 max-w-2xl mx-auto"
+        >
+          Crafting digital experiences with precision and innovation
+        </motion.p>
+
         {/* REBRANDING Header */}
         <motion.div
           variants={itemVariants}
@@ -177,27 +198,6 @@ const Hero = () => {
           </motion.div>
         </motion.div>
 
-        {/* Logo */}
-        <motion.div variants={itemVariants} className="mb-8">
-          <motion.img
-            src="/sources/fulllogo_transparent_nobuffer.png"
-            alt="Studio Thielman - Software & Web Development"
-            className="h-24 md:h-32 lg:h-40 mx-auto"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1, ease: [0.6, -0.05, 0.01, 0.99] }}
-            loading="eager"
-          />
-        </motion.div>
-
-        {/* Subheading */}
-        <motion.p
-          variants={itemVariants}
-          className="text-lg md:text-xl lg:text-2xl text-gray-600 mb-12 max-w-2xl mx-auto"
-        >
-          Crafting digital experiences with precision and innovation
-        </motion.p>
-
         {/* CTA Buttons - Hidden during rebranding */}
         <motion.div
           variants={itemVariants}
@@ -245,7 +245,7 @@ const Hero = () => {
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           aria-label="Scroll down"
         >
-          <span className="text-xs uppercase tracking-wider mb-2">Scroll</span>
+          <span className="text-xs uppercase tracking-wider mb-2">Rebranding</span>
           <HiArrowDown className="h-6 w-6" />
         </motion.button>
       </motion.div>
