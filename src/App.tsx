@@ -32,7 +32,7 @@ function App() {
 
   return (
     <div className="min-h-screen" style={{ minHeight: '100vh' }}>
-      <Navigation activeSection={activeSection} />
+      <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />
       <main role="main">
         <Hero />
         {/* Hidden during rebranding */}

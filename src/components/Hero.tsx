@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { HiArrowDown } from 'react-icons/hi'
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -10,6 +9,7 @@ const Hero = () => {
     minutes: 0,
     seconds: 0,
   })
+  const [isComplete, setIsComplete] = useState(false)
 
   // Target: Saturday, January 17, 2026 at 6:00 PM UTC+1
   useEffect(() => {
@@ -26,8 +26,10 @@ const Hero = () => {
         const seconds = Math.floor((difference % (1000 * 60)) / 1000)
 
         setTimeLeft({ days, hours, minutes, seconds })
+        setIsComplete(false)
       } else {
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+        setIsComplete(true)
       }
     }
 
@@ -70,13 +72,6 @@ const Hero = () => {
         ease: [0.6, -0.05, 0.01, 0.99],
       },
     },
-  }
-
-  const scrollToNext = () => {
-    const bioSection = document.getElementById('bio')
-    if (bioSection) {
-      bioSection.scrollIntoView({ behavior: 'smooth' })
-    }
   }
 
   return (
@@ -156,46 +151,72 @@ const Hero = () => {
             REBRANDING
           </motion.h1>
           
-          {/* Countdown Timer */}
-          <motion.div
-            className="flex flex-wrap justify-center gap-4 md:gap-6 lg:gap-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            <div className="flex flex-col items-center">
-              <div className="text-3xl md:text-4xl lg:text-5xl font-bold mb-1">
-                {String(timeLeft.days).padStart(2, '0')}
+          {/* Countdown Timer or Complete Message */}
+          {isComplete ? (
+            <motion.div
+              className="flex flex-col items-center gap-4 md:gap-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <motion.h2
+                className="text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-wider"
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                Rebranding Complete
+              </motion.h2>
+              <motion.p
+                className="text-lg md:text-xl text-gray-600 max-w-2xl"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              >
+                Please refresh the site to see the new design.
+              </motion.p>
+            </motion.div>
+          ) : (
+            <motion.div
+              className="flex flex-wrap justify-center gap-4 md:gap-6 lg:gap-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+            >
+              <div className="flex flex-col items-center">
+                <div className="text-3xl md:text-4xl lg:text-5xl font-bold mb-1">
+                  {String(timeLeft.days).padStart(2, '0')}
+                </div>
+                <div className="text-xs md:text-sm uppercase tracking-wider text-gray-600">
+                  Days
+                </div>
               </div>
-              <div className="text-xs md:text-sm uppercase tracking-wider text-gray-600">
-                Days
+              <div className="flex flex-col items-center">
+                <div className="text-3xl md:text-4xl lg:text-5xl font-bold mb-1">
+                  {String(timeLeft.hours).padStart(2, '0')}
+                </div>
+                <div className="text-xs md:text-sm uppercase tracking-wider text-gray-600">
+                  Hours
+                </div>
               </div>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="text-3xl md:text-4xl lg:text-5xl font-bold mb-1">
-                {String(timeLeft.hours).padStart(2, '0')}
+              <div className="flex flex-col items-center">
+                <div className="text-3xl md:text-4xl lg:text-5xl font-bold mb-1">
+                  {String(timeLeft.minutes).padStart(2, '0')}
+                </div>
+                <div className="text-xs md:text-sm uppercase tracking-wider text-gray-600">
+                  Minutes
+                </div>
               </div>
-              <div className="text-xs md:text-sm uppercase tracking-wider text-gray-600">
-                Hours
+              <div className="flex flex-col items-center">
+                <div className="text-3xl md:text-4xl lg:text-5xl font-bold mb-1">
+                  {String(timeLeft.seconds).padStart(2, '0')}
+                </div>
+                <div className="text-xs md:text-sm uppercase tracking-wider text-gray-600">
+                  Seconds
+                </div>
               </div>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="text-3xl md:text-4xl lg:text-5xl font-bold mb-1">
-                {String(timeLeft.minutes).padStart(2, '0')}
-              </div>
-              <div className="text-xs md:text-sm uppercase tracking-wider text-gray-600">
-                Minutes
-              </div>
-            </div>
-            <div className="flex flex-col items-center">
-              <div className="text-3xl md:text-4xl lg:text-5xl font-bold mb-1">
-                {String(timeLeft.seconds).padStart(2, '0')}
-              </div>
-              <div className="text-xs md:text-sm uppercase tracking-wider text-gray-600">
-                Seconds
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          )}
         </motion.div>
 
         {/* CTA Buttons - Hidden during rebranding */}
@@ -229,25 +250,6 @@ const Hero = () => {
             Get In Touch
           </motion.button>
         </motion.div>
-      </motion.div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center"
-      >
-        <motion.button
-          onClick={scrollToNext}
-          className="flex flex-col items-center text-primary-black/60 hover:text-primary-black transition-colors"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          aria-label="Scroll down"
-        >
-          <span className="text-xs uppercase tracking-wider mb-2">Rebranding</span>
-          <HiArrowDown className="h-6 w-6" />
-        </motion.button>
       </motion.div>
     </section>
   )

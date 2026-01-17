@@ -4,9 +4,10 @@ import { HiMenu, HiX } from 'react-icons/hi'
 
 interface NavigationProps {
   activeSection: string
+  setActiveSection: (section: string) => void
 }
 
-const Navigation = ({ activeSection }: NavigationProps) => {
+const Navigation = ({ activeSection, setActiveSection }: NavigationProps) => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -25,12 +26,10 @@ const Navigation = ({ activeSection }: NavigationProps) => {
     { name: 'Rebranding', id: 'contact' },
   ]
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-      setIsMobileMenuOpen(false)
-    }
+  const handleNavClick = (id: string) => {
+    // Update active section without scrolling
+    setActiveSection(id)
+    setIsMobileMenuOpen(false)
   }
 
   return (
@@ -46,7 +45,7 @@ const Navigation = ({ activeSection }: NavigationProps) => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <motion.button
-            onClick={() => scrollToSection('hero')}
+            onClick={() => handleNavClick('hero')}
             className="flex items-center space-x-2"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -64,7 +63,7 @@ const Navigation = ({ activeSection }: NavigationProps) => {
             {navItems.map((item) => (
               <motion.button
                 key={item.id}
-                onClick={() => scrollToSection(item.id)}
+                onClick={() => handleNavClick(item.id)}
                 className="relative text-sm font-medium uppercase tracking-wider"
                 whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.2 }}
@@ -113,7 +112,7 @@ const Navigation = ({ activeSection }: NavigationProps) => {
           {navItems.map((item) => (
             <motion.button
               key={item.id}
-              onClick={() => scrollToSection(item.id)}
+              onClick={() => handleNavClick(item.id)}
               className={`block w-full text-left text-sm font-medium uppercase tracking-wider py-2 ${
                 activeSection === item.id ? 'text-primary-black' : 'text-gray-600'
               }`}
