@@ -10,6 +10,7 @@ const Hero = () => {
     seconds: 0,
   })
   const [isComplete, setIsComplete] = useState(false)
+  const [isLastMinute, setIsLastMinute] = useState(false)
 
   // Target: Saturday, January 17, 2026 at 6:00 PM UTC+1
   useEffect(() => {
@@ -27,9 +28,12 @@ const Hero = () => {
 
         setTimeLeft({ days, hours, minutes, seconds })
         setIsComplete(false)
+        // Check if we're in the last minute (less than 60 seconds total)
+        setIsLastMinute(days === 0 && hours === 0 && minutes === 0 && seconds < 60)
       } else {
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 })
         setIsComplete(true)
+        setIsLastMinute(false)
       }
     }
 
@@ -151,6 +155,25 @@ const Hero = () => {
             REBRANDING
           </motion.h1>
           
+          {/* Last Minute Message */}
+          {isLastMinute && !isComplete && (
+            <motion.div
+              className="mb-8 md:mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <motion.p
+                className="text-2xl md:text-3xl lg:text-4xl font-bold text-center max-w-4xl mx-auto leading-relaxed"
+                initial={{ scale: 0.95 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                Thanks for being here for the launch! I appreciate your presence! Let's build toward a better future!
+              </motion.p>
+            </motion.div>
+          )}
+
           {/* Countdown Timer or Complete Message */}
           {isComplete ? (
             <motion.div
